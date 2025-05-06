@@ -1,0 +1,18 @@
+{
+    "name": "hp84og5/globalquantumcapital",
+    "description": "PHP site for GQC",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hp84og5\\Globalquantumcapital\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ahllnyt",
+            "email": "ahllnyt1@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
