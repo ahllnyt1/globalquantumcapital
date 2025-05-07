@@ -1,19 +1,23 @@
-# 1) base PHP + Apache image
+# syntax=docker/dockerfile:1
+
 FROM php:8.2-apache
 
-# 2) install PDO MySQL
-RUN apt-get update \
- && docker-php-ext-install pdo pdo_mysql \
- && a2enmod rewrite
+# 1) Install PDO MySQL (and any other PHP extensions you need)
+RUN docker-php-ext-install pdo pdo_mysql
 
-# 3) set working dir and copy your app
-WORKDIR /var/www/html
-COPY . /var/www/html
+# 2) Enable mod_rewrite (optional but common)
+RUN a2enmod rewrite
 
-# 4) fix permissions (Apache runs as www‑data)
-RUN chown -R www-data:www-data /var/www/html \
- && chmod -R 755 /var/www/html
+# 3) Copy your entire app into Apache’s document root
+COPY . /var/www/html/
 
-# 5) expose port 80 and start Apache
-EXPOSE 80
+# 4) Instruct Apache to listen on the PORT Render sets
+ARG PORT       # this will get passed in by Render at build time
+RUN sed -i "s/Listen 80/Listen ${PORT}/" /etc/apache2/ports.conf \
+ && sed -i "s/:80/:${PORT}/g" /etc/apache2/sites-available/000-default.conf
+
+# 5) Expose that port
+EXPOSE ${PORT}
+
+# 6) Launch Apache in the foreground
 CMD ["apache2-foreground"]
