@@ -1,0 +1,26 @@
+# Composer dependencies
+/vendor/
+composer.lock
+
+# Environment config (API keys, DB creds)
+.env
+.env.local
+
+# XAMPP/PHPStorm projects (optional)
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs & caches
+/logs/
+*.log
+/cache/
+
+# Node modules, if you ever use npm
+node_modules/
+
+# Generated assets
+public/build/

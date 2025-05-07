@@ -1,0 +1,378 @@
+/* -----------------------------------------------
+   Global Quantum Capital — Modern Style
+-------------------------------------------------*/
+
+/* 1) CSS Reset & Variables */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --clr-bg: #f4f7fc;
+  --clr-foreground: #ffffff;
+  --clr-primary: #2d3748;
+  --clr-accent: #4f46e5;
+  --clr-accent-light: #667eea;
+  --clr-text: #2d3748;
+  --clr-muted: #718096;
+  --ff-base: 'Inter', sans-serif;
+  --transition: 0.3s ease-in-out;
+}
+
+/* 2) Base Styles */
+body {
+  font-family: var(--ff-base);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+}
+a {
+  text-decoration: none;
+  color: var(--clr-accent);
+  transition: color var(--transition);
+}
+a:hover {
+  color: var(--clr-accent-light);
+}
+
+/* 3) Layout Helpers */
+.container {
+  max-width: 1024px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.btn {
+  display: inline-block;
+  background: var(--clr-accent);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: background var(--transition);
+}
+.btn:hover {
+  background: var(--clr-accent-light);
+}
+
+/* 4) Header & Nav */
+.site-header {
+  background: var(--clr-primary);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-logo a {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.site-nav a {
+  color: rgba(255,255,255,0.85);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+.site-nav a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Dark‑mode toggle button */
+.dark-toggle {
+  background: none;
+  color: #fff;
+  border: 2px solid var(--clr-accent);
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.dark-toggle:hover {
+  background: var(--clr-accent);
+  color: #fff;
+}
+
+/* 5) Footer */
+.site-footer {
+  background: var(--clr-primary);
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
+
+/* 6) Cards & Grids */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.card {
+  background: var(--clr-foreground);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  /* fade‑in animation */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s forwards;
+
+  /* floating hover effect */
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 7) Forms */
+form {
+  margin-top: 1rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--clr-muted);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  transition: border-color var(--transition);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+}
+
+/* 8) Responsive tweaks */
+@media (max-width: 600px) {
+  .header-inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Style only the link cards (title text stays black) */
+.link-card {
+  color: var(--clr-text);
+}
+.link-card h3 {
+  color: var(--clr-text);
+}
+
+/* Keep custom colors for amounts */
+.amount-green {
+  color: green !important;
+}
+.amount-red {
+  color: red !important;
+}
+/* SERIF HEADINGS */
+h1,h2,h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.lead { font-size:1.2rem; }
+.small-text { font-size:0.8rem; }
+
+/* Section animations with delays */
+section.animate-up { animation: fadeInUp 1s ease-out 0.2s both; }
+section.animate-left { animation: fadeInLeft 1s ease-out 0.4s both; }
+section.animate-right { animation: fadeInRight 1s ease-out 0.6s both; }
+section.animate-down { animation: fadeInDown 1s ease-out 0.8s both; }
+
+@keyframes fadeInLeft  { from{opacity:0;transform:translateX(-30px);} to{opacity:1;transform:none;} }
+@keyframes fadeInRight { from{opacity:0;transform:translateX(30px);}  to{opacity:1;transform:none;} }
+@keyframes fadeInDown  { from{opacity:0;transform:translateY(-30px);} to{opacity:1;transform:none;} }
+
+
+/* Section “tabs” with platinum background + hover float */
+.section-tab {
+  background: #e5e4e2;
+  padding: 2rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.section-tab:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Center‐text utility */
+.section-tab .container { text-align: inherit; }
+
+/* Ensure headings/text stay the default color */
+.section-tab,
+.section-tab h1,
+.section-tab h2,
+.section-tab h3,
+.section-tab p,
+.section-tab a {
+  color: var(--clr-text);
+}
+/* Cover background styles */
+.cover-1,
+.cover-2 {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #e5e4e2; /* fallback */
+  background-blend-mode: multiply;
+  color: white; /* optional if image is dark */
+  padding: 4rem 2rem;
+}
+
+/* Specific cover images */
+.cover-1 {
+  background-image: url('../img/your-hero-cover.jpg');
+}
+.cover-2 {
+  position: relative;
+  overflow: hidden;
+  background-color: #e5e4e2; /* fallback color */
+}
+
+/* make the video fill and cover the section */
+.cover-2 .bg-video {
+  position: absolute;
+  top: 50%; left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;  /* maintain aspect ratio */
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* ensure any text or buttons inside are above it */
+.cover-2 .container {
+  position: relative;
+  z-index: 1;
+}
+/* Content blocks spacing */
+.content-block {
+  margin: 2rem 0;
+}
+.content-block h3 {
+  margin-bottom: 0.5rem;
+  font-family: Georgia, serif;
+}
+.content-block p {
+  line-height: 1.5;
+}
+/* page‑break */
+.page-break {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Notifications section title */
+.notifications-section h2 {
+  margin-bottom: 1rem;
+}
+
+/* Random user action text */
+.random-action {
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--clr-muted);
+  text-align: center;
+}
+
+/* Keep Amount colors */
+.amount-green { color: green; }
+.amount-red   { color: red; }
+/* page‑break */
+.page-break {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Notifications */
+.notifications-section h2 {
+  margin-bottom: 1rem;
+}
+
+/* Rotating random action text */
+.random-action {
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--clr-muted);
+  text-align: center;
+}
+
+/* Amount colors */
+.amount-green { color: green; }
+.amount-red   { color: red; }
+
+/* Hero “cover” wrapper */
+section.cover-1 {
+  position: relative;
+  height: 60vh;          /* or whatever height you want */
+  overflow: hidden;
+}
+
+/* Make the img fill that 60vh and cover it */
+section.cover-1 .cover-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* preserve aspect ratio and crop */
+  opacity: 0.6;
+  z-index: 0;
+}
+
+/* Push text/content above the image */
+section.cover-1 .container {
+  position: relative;
+  z-index: 1;
+}
+
+body.dark {
+  --clr-bg: #111827;
+  --clr-foreground: #1f2937;
+  --clr-primary: #000000;
+  --clr-accent: #22d3ee;
+  --clr-accent-light: #38bdf8;
+  --clr-text: #0f1010;
+  --clr-muted: #94a3b8;
+}
