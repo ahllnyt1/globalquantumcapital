@@ -1,6 +1,9 @@
 <?php
 // config.php
 
+// Which PDO driver to use
+define('DB_DRIVER', getenv('DB_DRIVER') ?: 'mysql');
+
 // MySQL connection (default to local if env missing)
 define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
 define('DB_PORT', getenv('DB_PORT') ?: '3306');
