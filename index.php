@@ -1,5 +1,11 @@
 <?php
 // index.php
+
+// Quick test – should appear at top of page
+echo "<!-- HELLO FROM INDEX -->\n";
+
+
+// index.php
 require_once __DIR__ . '/init.php';
 require_once __DIR__ . '/header.php';
 ?>
