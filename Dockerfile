@@ -1,17 +1,19 @@
-# Use the official PHP+Apache image
+# 1) base PHP + Apache image
 FROM php:8.2-apache
 
-# Install PDO MySQL extension (and any others you need)
-RUN docker-php-ext-install pdo pdo_mysql
+# 2) install PDO MySQL
+RUN apt-get update \
+ && docker-php-ext-install pdo pdo_mysql \
+ && a2enmod rewrite
 
-# Copy your code into Apache’s document root
+# 3) set working dir and copy your app
+WORKDIR /var/www/html
 COPY . /var/www/html
 
-# Make sure the BASE_URL in config.php matches the Render URL you'll get later
-# e.g. define('BASE_URL','https://globalquantumcapital.onrender.com');
+# 4) fix permissions (Apache runs as www‑data)
+RUN chown -R www-data:www-data /var/www/html \
+ && chmod -R 755 /var/www/html
 
-# Expose HTTP
+# 5) expose port 80 and start Apache
 EXPOSE 80
-
-# Start Apache in the foreground
 CMD ["apache2-foreground"]
