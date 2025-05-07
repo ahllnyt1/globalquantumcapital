@@ -4,5 +4,5 @@ define('DB_NAME','gqc');
 define('DB_USER','root');
 define('DB_PASS','');
 // Base URL (no trailing slash)
-define('BASE_URL', 'http://localhost/globalquantumcapital');
+define('BASE_URL','https://globalquantumcapital.onrender.com');
 date_default_timezone_set('UTC');
