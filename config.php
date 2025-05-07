@@ -15,7 +15,7 @@ define('DB_PASS', getenv('DB_PASS') ?: '');
 define(
   'BASE_URL',
   rtrim(
-    getenv('BASE_URL') ?: 'https://globalquantumcapital.onrender.com',
+    getenv('BASE_URL') ?: 'http://localhost/globalquantumcapital',
     '/'
   )
 );
